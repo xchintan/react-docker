@@ -1,0 +1,21 @@
+# Tell travis
+# 1. What you need - Docker
+# 2. Build a docker image using Dockerfile.dv
+# 3. Run the test suit 'npm start test'
+# 4. Tell travis to deploy
+
+
+sudo: required  
+#We need super user permission 
+services:
+    - docker
+
+before_install:
+    - docker build -t MYIMAGE -f Dockerfile.dev .
+  
+script:
+    # Tell travis how to run test-suite
+    # docker run MYIMAGE npm run tests --- this is interactive, needs users' intervention
+    # So to run test automatically  'docker run xxx npm run test -- --coverage'
+    - docker run MYIMAGE npm run test -- --coverage
+    
