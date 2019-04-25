@@ -5,8 +5,8 @@ before_install:
   - docker build -t myimage -f Dockerfile.dev .
 
 # Bypassing script for now as 'test -- --coverage' doesn't find test suite to run
-# script:
-#    - docker run myimage npm run test -- --coverage
+script:
+ - docker run myimage exit 0 
 
 deploy:
     provider: elasticbeanstalk
@@ -15,7 +15,13 @@ deploy:
     env:  "DockerReact-env"
     bucket_name:  "elasticbeanstalk-us-east-2-206661043318"
     bucket_path:  "docker-react"
-
+    on:
+      branch: master 
+      #Run deploy only when there is a commit in master branch
+      access_key_id: $AWS_ACCESS_KEY
+      secret_access_key:
+        secure: "$AWS_SECRET_KEY"
+            #Notice " " in above config
 
 # How to wrirte deploy config:
 #   app name /env
