@@ -6,3 +6,32 @@ before_install:
 
 script:
    - docker run MYIMAGE npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app:  "docker-react"
+    env:  "DockerReact-env"
+    bucket_name:  "elasticbeanstalk-us-east-2-206661043318"
+    bucket_path:  "docker-react"
+
+
+# How to wrirte deploy config:
+#   app name /env
+#     AWS Console > Search for "Elasticbeankstalk" -> click on your app
+#     All Applications ---> docker-react ---> DockerReact-env 
+#     Here docker-react is your app-name
+#     DockerReact-env is your env
+
+#   region:
+#       Continuing from above step look out for a URL
+#       DockerReact-env.kvgyy3tx9f.us-east-2.elasticbeanstalk.com 
+#       Here "us-east-2" is region.
+
+#   For bucket_name:
+#       AWS Console -> serivces -> Search for S3
+#       and on S3 you will notice as follows:
+#       Amazon S3 > elasticbeanstalk-us-east-2-206661043318
+
+#   For bucket_path: 
+#       Same as app name
