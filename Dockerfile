@@ -7,4 +7,5 @@ RUN npm run build #build project will be in /app/builder/
 
 
 FROM nginx
+EXPOSE 80
 COPY --from=react-app-builder /app/build /usr/share/nginx/html/
