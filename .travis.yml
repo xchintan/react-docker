@@ -6,7 +6,7 @@ before_install:
 
 # Bypassing script for now as 'test -- --coverage' doesn't find test suite to run
 script:
- - docker run myimage exit 0 
+ - docker run myimage echo "Hello World"
 
 deploy:
     provider: elasticbeanstalk
