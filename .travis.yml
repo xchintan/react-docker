@@ -2,10 +2,10 @@ sudo: required
 services:
     - docker
 before_install:
-  - docker build -t MYIMAGE -f Dockerfile.dev .
+  - docker build -t myimage -f Dockerfile.dev .
 
 script:
-   - docker run MYIMAGE npm run test -- --coverage
+   - docker run myimage npm run test -- --coverage
 
 deploy:
     provider: elasticbeanstalk
